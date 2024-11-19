@@ -1,12 +1,16 @@
-<h1>My tasks</h1>
 
-<ul>
-  <% @tasks.each do |task| %>
-    <li><%= task.completed %>
-    <%= link_to task.title, task_path(task) %>
-    <%= link_to "Delete", destroy_task_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-    </li>
-  <% end %>
-</ul>
 
-<p><%= link_to "Add a new task", tasks_new_path %></p>
+  <div class="mb-5">
+    <h1>My tasks</h1>
+  </div>
+  <ul class="list-group align-items-center mb-4">
+      <% @tasks.each do |task| %>
+        <li class="not-style list-group-item justify-content-center col-lg-6">
+          <input class="form-check-input me-1" type="checkbox" value="<%= task.completed %>" aria-label="...">
+          <%= link_to task.title, task_path(task) %>
+          <%= link_to "<i class='fa-solid fa-trash'></i>".html_safe, task_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+        </li>
+      <% end %>
+  </ul>
+
+  <p><%= link_to "+ Add a new task", new_task_path %></p>
